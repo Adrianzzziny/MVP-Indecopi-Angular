@@ -1,0 +1,204 @@
+<form [formGroup]="form">
+  <h3>Mis archivos</h3>
+
+  <!-- Datos del documento -->
+  <h5>Datos del documento</h5>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Tipo de documento <span class="required">(Obligatorio)</span></label>
+      <select formControlName="tipoDocumento" required>
+        <option value="">Seleccionar</option>
+        <option value="CARTA">CARTA</option>
+        <option value="OFICIO">OFICIO</option>
+      </select>
+
+      <div *ngIf="showTipoDocError" class="error-msg">
+        Debe seleccionar un tipo de documento.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Número de expediente <span class="required">(Opcional)</span></label>
+      <input type="text" formControlName="numeroExpediente" placeholder="Ingresar expediente"
+             (input)="limitarEntrada('numeroExpediente', $event)"
+      />
+      <div *ngIf="form.get('numeroExpediente')?.hasError('pattern')" class="error">
+        Solo se permiten números.
+      </div>
+    </div>
+  </div>
+
+  <!-- Archivos adjuntos -->
+  <h4>Archivos adjuntos</h4>
+  <p class="help-text">
+    Antes de cargar sus archivos, verifique que no se encuentren dañados, ni protegidos por contraseñas
+  </p>
+
+  <!-- Documento principal -->
+  <div class="form-group file-upload">
+    <label>Documento principal <span class="required">(Obligatorio)</span></label>
+    <p class="help-text">
+      Subir el <strong>escrito firmado</strong>, con un peso <strong>máximo de 9.99 MB</strong> (10475274 Bytes)
+    </p>
+    <div class="drop-zone"
+         (dragover)="onDragOver($event)"
+         (drop)="onDrop($event, 'principal')"
+         (dragleave)="onDragLeave($event)">
+      <div class="upload-content">
+        <i class="bi bi-cloud-upload upload-icon"></i>
+        <p>Arrastre y suelte o elija los archivos</p>
+        <small>Formatos de archivos: .pdf</small>
+        <input type="file" (change)="onFileSelect($event, 'principal')" />
+        <button type="button" class="btn-examinar">Examinar</button>
+      </div>
+    </div>
+
+    <div *ngIf="showDocError" class="error-msg">
+      Debe adjuntar el documento principal antes de continuar.
+    </div>
+
+    <!--
+    <div *ngIf="files.principal" class="file-list">
+      <span>{{ files.principal.name }}</span>
+    </div>
+    -->
+
+    <!-- Tabla Resumen archivo principal 2.0 -->
+    <table *ngIf="files.principal" class="file-table">
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Tamaño</th>
+        <th>Total de pág.</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{ files.principal.name }}</td>
+        <td>{{ (files.principal.size / 1024 / 1024) | number:'1.2-2' }} MB</td>
+        <td>1</td>
+        <td>
+          <div class="table-actions">
+          <button type="button" (click)="downloadFile('principal')" class="icon-btn">
+            <i class="bi bi-download"></i>
+          </button>
+          <button type="button" (click)="removeFile('principal')" class="icon-btn delete">
+            <i class="bi bi-trash"></i>
+          </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <!-- Tabla Resumen archivo principal 2.0 -->
+  </div>
+
+  <!-- Anexos -->
+  <div class="form-group file-upload">
+    <label>Anexos de trámite <span class="required">(Opcional)</span></label>
+    <div class="drop-zone"
+         (dragover)="onDragOver($event)"
+         (drop)="onDrop($event, 'anexos')"
+         (dragleave)="onDragLeave($event)">
+      <div class="upload-content">
+        <i class="bi bi-cloud-upload upload-icon"></i>
+        <p>Arrastre y suelte o elija los archivos</p>
+        <small>El formato de archivos soportados son .jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.mp3,.mp4</small>
+        <small>Nota: Solo se contarán las paginas de los archivos PDF</small>
+        <input type="file" multiple (change)="onFileSelect($event, 'anexos')" />
+        <button type="button" class="btn-examinar">Examinar</button>
+      </div>
+    </div>
+    <!--
+    <ul *ngIf="files.anexos.length > 0" class="file-list">
+      <li *ngFor="let file of files.anexos">{{ file.name }}</li>
+    </ul>
+    -->
+
+    <!-- Tabla Resumen anexos 2.0 -->
+    <table *ngIf="files.anexos.length > 0" class="file-table">
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Tamaño</th>
+        <th>Total de pág.</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let file of pagedAnexos; let i = index">
+        <td>{{ file.name }}</td>
+        <td>{{ (file.size / 1024 / 1024) | number:'1.2-2' }} MB</td>
+        <td>1</td>
+        <td>
+          <div class="table-actions">
+          <button type="button" (click)="downloadFile('anexos', i)" class="icon-btn">
+            <i class="bi bi-download"></i>
+          </button>
+          <button type="button" (click)="removeFile('anexos', i)" class="icon-btn delete">
+            <i class="bi bi-trash"></i>
+          </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <!-- Tabla Resumen anexos 2.0 -->
+
+    <!-- Paginacion 1.0 -->
+    <div class="pagination-container">
+    <p class="mt-2">Total cargados: <strong>{{ files.anexos.length }} archivos</strong></p>
+
+    <app-pagination
+      [totalItems]="files.anexos.length"
+      [pageSize]="pageSize"
+      [currentPage]="currentPage"
+      (pageChange)="changePage($event)">
+    </app-pagination>
+    <!-- Paginacion 1.0 -->
+
+    </div>
+  </div>
+
+  <!-- Nuevo bloque resumen total 1.0
+  <div class="files-summary" *ngIf="files.principal || files.anexos.length > 0">
+    <table>
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Tamaño</th>
+        <th>Total de pág.</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+     --Documento principal --
+      <tr *ngIf="files.principal">
+        <td>{{ files.principal.name }}</td>
+        <td>{{ (files.principal.size / 1024 / 1024) | number:'1.0-2' }} MB</td>
+        <td>N° pag...</td>
+        <td>
+          <button class="icon-btn" (click)="editFile('principal')"><i class="bi bi-pencil"></i></button>
+          <button class="icon-btn" (click)="removeFile('principal')"><i class="bi bi-trash"></i></button>
+        </td>
+      </tr>
+
+      -- Anexos
+      <tr *ngFor="let file of files.anexos; let i = index">
+        <td>{{ file.name }}</td>
+        <td>{{ (file.size / 1024 / 1024) | number:'1.0-2' }} MB</td>
+        <td>N° pag...</td>
+        <td>
+          <button class="icon-btn" (click)="editFile('anexos', i)"><i class="bi bi-pencil"></i></button>
+          <button class="icon-btn" (click)="removeFile('anexos', i)"><i class="bi bi-trash"></i></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  Nuevo bloque resumen total 1.0-->
+
+
+</form>
+

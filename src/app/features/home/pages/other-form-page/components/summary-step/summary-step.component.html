@@ -1,0 +1,111 @@
+<div class="summary">
+  <h3>Resumen</h3>
+  <!-- Sección 1 -->
+  <div class="section">
+    <div class="section-header">
+    <h4>1. Mis datos</h4>
+      <button class="edit-btn" (click)="goToStep(0)">
+        <i class="bi bi-pencil-fill"></i>
+      </button>
+    </div>
+    <h5 class="subsection-title">Datos personales</h5>
+    <div class="row"><strong>Tipo de documento:</strong> <span>{{ data().personal?.tipoDocumento }}</span></div>
+    <div class="row"><strong>Documento:</strong> <span>{{ data().personal?.numeroDocumento }}</span></div>
+    <div class="row"><strong>Nombre completo:</strong> <span>{{ data().personal?.nombres }} {{ data().personal?.apellidoPaterno }} {{ data().personal?.apellidoMaterno }}</span></div>
+    <div class="row"><strong>Apellido Paterno:</strong> <span>{{ data().personal?.apellidoPaterno }}</span></div>
+    <div class="row"><strong>Apellido Materno:</strong> <span>{{ data().personal?.apellidoMaterno }}</span></div>
+    <div class="row"><strong>Correo:</strong> <span>{{ data().personal?.correo }}</span></div>
+    <div class="row"><strong>Celular:</strong> <span>{{ data().personal?.celular }}</span></div>
+    <ng-container *ngIf="data().personal?.tipoDocumento !== 'CARNÉ DE EXTRANJERÍA'">
+    <hr class="divider" />
+    <h5 class="subsection-title">Ubicación</h5>
+    <div class="row"><strong>Departamento:</strong> <span>{{ data().personal?.departamento }}</span></div>
+    <div class="row"><strong>Provincia:</strong> <span>{{ data().personal?.provincia }}</span></div>
+    <div class="row"><strong>Distrito:</strong> <span>{{ data().personal?.distrito }}</span></div>
+    </ng-container>
+  </div>
+
+  <!-- Sección 2 -->
+  <div class="section">
+  <div class="section-header">
+    <h4>2. Área de destino</h4>
+    <button class="edit-btn" (click)="goToStep(1)">
+      <i class="bi bi-pencil-fill"></i>
+    </button>
+  </div>
+    <div class="field-block">
+      <strong>Sede:</strong>
+      <span>{{ data().recipient?.sede }}</span>
+    </div>
+    <div class="field-block">
+      <strong>Área de destino:</strong>
+      <span>{{ data().recipient?.areaDestino }}</span>
+    </div>
+    <div class="field-block">
+      <strong>Asunto:</strong>
+      <span>{{ data().recipient?.asunto }}</span>
+    </div>
+  </div>
+
+  <!-- Sección 3 -->
+  <div class="section">
+  <div class="section-header">
+    <h4>3. Mis archivos</h4>
+    <button class="edit-btn" (click)="goToStep(2)">
+      <i class="bi bi-pencil-fill"></i>
+    </button>
+  </div>
+    <div class="section-header">
+      <h5>Datos del documento</h5>
+    </div>
+    <div class="row"><strong>Tipo de documento:</strong> <span>{{ data().files?.tipoDocumento }}</span></div>
+    <!--
+    <div class="row"><strong>Número de expediente:</strong> <span>{{ data().files?.numeroExpediente }}</span></div>
+    -->
+    <div class="row info-row">
+      <strong></strong>
+    <span class="info-text">La cantidad de páginas corresponde a los archivos .pdf</span>
+    </div>
+
+    <!-- Documento principal -->
+    <div class="section-files">
+      <div class="section-header">
+    <h5>Archivos adjuntos</h5>
+      </div>
+    <table *ngIf="totalFiles > 0" class="file-table">
+      <thead>
+      <tr>
+        <th>Tipo de archivo</th>
+        <th>Nombre</th>
+        <th>Tamaño</th>
+        <th>Total de pág.</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let file of paginatedFiles">
+        <td>{{ file.type }}</td>
+        <td>{{ file.name }}</td>
+        <td>{{ (file.size || 0) / 1024 / 1024 | number:'1.2-2' }} MB</td>
+        <td>1</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination-container" *ngIf="totalFiles > 0">
+      <p class="total-files">
+      <strong>Total cargados:</strong> {{ totalFiles }} archivos
+      </p>
+
+    <!-- PAGINACION -->
+    <app-pagination
+      *ngIf="totalFiles > pageSize"
+      [totalItems]="totalFiles"
+      [pageSize]="pageSize"
+      [currentPage]="currentPage"
+      (pageChange)="onPageChange($event)">
+    </app-pagination>
+    </div>
+  </div>
+  </div>
+
+</div>

@@ -1,0 +1,77 @@
+<!-- Estilo tipo card (como maintenance-alert) -->
+<mat-card *ngIf="mode === 'card'" class="important-alert">
+  <div class="alert-content">
+    <div class="alert-header">
+      <mat-icon>{{ data.icon || 'info' }}</mat-icon>
+      <span class="alert-header-text mb-1">{{ data.title || 'Importante' }}</span>
+    </div>
+    <!-- mensaje -->
+    <div class="alert-body" [innerHTML]="expanded ? data.fullMessage : data.message"></div>
+    <!-- mensaje -->
+
+  </div>
+
+  <!-- link -->
+  <div *ngIf="data.fullMessage" class="text-center flex-column">
+    <button class="link-leer-mas" (click)="toggleExpanded()">
+      {{ expanded ? 'Leer menos' : 'Leer más...' }}
+    </button>
+  </div>
+  <!-- link -->
+</mat-card>
+
+<!-- Template MODAL -->
+<div *ngIf="mode !== 'card'" class="m-alert d-flex flex-column align-items-center justify-content-center">
+
+  <!-- Botón X para cerrar
+  <button type="button" class="close-btn" (click)="closeModal('secondary')">
+    &times;
+  </button>
+-->
+  <!-- Icono -->
+  <div *ngIf="data.icon" class="m-alert__icon d-flex align-items-center justify-content-center" [ngClass]="data.type">
+    <i [className]="data.icon"></i>
+  </div>
+
+  <!-- Caja central -->
+  <div class="m-alert__box">
+    <!-- Título -->
+    <h4 class="m-alert__title text-center mt-3">
+      {{ data.title || 'Importante' }}
+    </h4>
+
+    <!-- Contenido -->
+    <div class="m-alert__content text-center mt-2">
+      <p [innerHTML]="data.message"></p>
+    </div>
+  </div>
+
+  <!-- Acciones -->
+  <div *ngIf="data.titleAction || data.secondaryAction"
+       class="m-alert__actions d-flex justify-content-center mt-3">
+    <button *ngIf="data.titleAction"
+            type="button"
+            class="btn btn-primary w-auto"
+            (click)="closeModal('primary')">
+      {{ data.titleAction }}
+    </button>
+  </div>
+
+  <!-- Pregunta Sí / No -->
+  <div *ngIf="data.questionAction" class="question-action text-center mt-4">
+    <p>{{ data.questionAction.text }}</p>
+    <div class="d-flex justify-content-center gap-3 mt-2">
+      <button type="button"
+              class="btn btn-outline-secondary"
+              (click)="closeModal('no')">
+        {{ data.questionAction.no }}
+      </button>
+      <button type="button"
+              class="btn btn-warning"
+              (click)="closeModal('yes')">
+        {{ data.questionAction.yes }}
+      </button>
+    </div>
+  </div>
+
+</div>

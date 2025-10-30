@@ -1,0 +1,287 @@
+.summary {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+h3{
+  color: var(--mdpvfrontend-primary-pink);
+  font-weight: bold;
+}
+
+.section {
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fff;
+
+  h4 {
+    color: var(--mdpvfrontend-primary-pink);
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  h5 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin: 8px 0;
+    font-size: 14px;
+    color: #444;
+
+    strong {
+      color: #000;
+      text-align: left;
+      font-weight: 600;
+      min-width: 180px;
+    }
+
+    span {
+      text-align: left;
+      margin-left: 36px;
+    }
+  }
+
+  .field-block {
+    margin-bottom: 16px;
+  }
+
+  .field-block strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 4px;
+  }
+
+  .field-value {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.4;
+  }
+
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-header h4 {
+  margin: 0;
+}
+
+.subsection-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 16px 0 10px;
+  color: #000;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 16px 0;
+}
+
+.edit-btn {
+  background: transparent;
+  border: none;
+  color: #262626;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.edit-btn:hover {
+  color: var(--mdpvfrontend-primary-pink);
+}
+
+.section-files{
+  margin-top: 16px;
+}
+
+/* Tabla de archivos */
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 14px;
+
+  thead {
+    background: #eaeaea;
+    th {
+      text-align: left;
+      padding: 10px;
+      font-weight: 600;
+      color: #464F60;
+
+      &:nth-child(1) { width: 20%; text-align: left }
+      &:nth-child(2) { width: 40%; text-align: left; }
+      &:nth-child(3) { width: 20%; text-align: center; }
+      &:nth-child(4) { width: 20%; text-align: center; }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #e0e0e0;
+      color: #464F60;
+
+      td {
+        padding: 10px;
+        vertical-align: middle;
+
+        &:nth-child(1) {
+          text-align: left;
+        }
+        &:nth-child(2) {
+          text-align: left;
+        }
+
+        &:nth-child(3),
+        &:nth-child(4) {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.total-files {
+  font-size: 14px;
+  strong {
+    font-weight: 600;
+  }
+}
+
+.summary-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .total-files {
+    font-size: 14px;
+    strong {
+      font-weight: 600;
+    }
+  }
+}
+
+app-pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+
+  .total-files {
+    margin: 0;
+    font-size: 14px;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  app-pagination {
+    margin-left: auto;
+  }
+}
+
+.section .row span {
+  text-align: left;
+  margin-left: 36px;
+}
+.section .row.info-row span.info-text {
+  margin-left: 0;
+  grid-column: 1 / span 2;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Ajustes responsive para 768px */
+@media (max-width: 768px) {
+  .file-table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 13px;
+    border-collapse: collapse;
+
+    thead {
+      background: #e0e0e0;
+      th {
+        padding: 10px 6px;
+        font-weight: 600;
+        color: #333;
+        font-size: 13px;
+        text-align: left;
+        white-space: nowrap;
+
+          &:nth-child(1) { width: 30%; text-align: left }
+          &:nth-child(2) { width: 30%; text-align: left; }
+          &:nth-child(3) { width: 20%; text-align: center; }
+          &:nth-child(4) { width: 20%; text-align: center; }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #e0e0e0;
+
+        td {
+          padding: 8px 6px;
+          font-size: 13px;
+          vertical-align: middle;
+          word-wrap: break-word;
+        }
+
+        /* Tipo de archivo */
+        td:nth-child(1) {
+          width: 30%;
+          text-align: left;
+        }
+
+        /* Nombre del archivo + Elipsis */
+        td:nth-child(2) {
+          width: 30%;
+          text-align: left;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 130px;
+        }
+
+        /* Tamaño */
+        td:nth-child(3) {
+          width: 20%;
+          text-align: center;
+        }
+
+        /* Total de pág. */
+        td:nth-child(4) {
+          width: 20%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+
+
+

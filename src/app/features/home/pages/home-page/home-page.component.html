@@ -1,0 +1,47 @@
+<div class="container">
+  <h3 class="text-center mb-4">Presenta tus documentos aquí:</h3>
+
+  <div class="cards-container">
+    <app-document-card
+      title="Protección al consumidor"
+      icon="shield"
+      type="proteccion"
+      (ingresar)="onIngresar($event)"
+    ></app-document-card>
+
+    <app-document-card
+      title="Barreras burocráticas"
+      icon="search"
+      type="burocraticas"
+      (ingresar)="onIngresar($event)"
+    ></app-document-card>
+
+    <app-document-card
+      title="Otros"
+      icon="folder"
+      type="otros"
+      (ingresar)="onIngresar($event)"
+    ></app-document-card>
+  </div>
+
+  <!-- Version 1.0
+  <div class="cards-alert">
+    <app-maintenance-alert class="mt-4"></app-maintenance-alert>
+  </div>
+  -->
+  <!-- Version 2.0-->
+  <div class="cards-alert mt-4">
+    <app-alert
+      [data]="{
+    type: 'info',
+    icon: 'info',
+    title: 'Importante',
+    message: 'Desde el día <strong>07/06/2025</strong> a las 00:00 hrs hasta el día ' +
+     '<strong>10/06/2025</strong> a las 00:00 hrs Mesa de Partes Virtual estará en mantenimiento, ' +
+      'agradecemos su comprensión.'
+  }"
+      mode="card"
+    ></app-alert>
+
+  </div>
+

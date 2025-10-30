@@ -1,0 +1,18 @@
+<div class="actions">
+  <button
+    type="button"
+    class="btn-back"
+    (click)="onBack()"
+  >
+    Atrás
+  </button>
+
+  <button
+    type="button"
+    class="btn-next"
+    [disabled]="useValidationBus ? false : !canAdvance()"
+    (click)="onNext()"
+  >
+    {{ currentStep() == 3 ? "Enviar" : "Siguiente" }}
+  </button>
+</div>

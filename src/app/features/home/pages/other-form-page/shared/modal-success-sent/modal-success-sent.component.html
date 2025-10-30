@@ -1,0 +1,32 @@
+<div class="modal-body text-center">
+  <div class="icon-success mb-3">
+    <i class="bi bi-check-circle-fill"></i>
+  </div>
+
+  <h5 class="text-warning fw-bold">
+    ¡Su documento ha sido enviado satisfactoriamente!
+  </h5>
+
+  <p>
+    El proceso de envío de documentos ha culminado. Para mayor información,
+    revise su correo electrónico
+  </p>
+
+  <p><strong>{{ email }}</strong></p>
+  <p>
+    Cargo Nro: <br />
+    <strong>{{ carga }}</strong>
+  </p>
+
+  <div class="mt-4">
+    <button class="btn btn-warning mb-3" (click)="onDownload()">
+      Descargar archivo
+    </button>
+  </div>
+
+  <p class="question">¿Desea ingresar otro documento?</p>
+  <div class="d-flex justify-content-center gap-3 mt-2">
+    <button class="btn btn-warning px-4" (click)="onYes()">Sí</button>
+    <button class="btn btn-outline-secondary px-4" (click)="onNo()">No</button>
+  </div>
+</div>

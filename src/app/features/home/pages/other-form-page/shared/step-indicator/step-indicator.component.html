@@ -1,0 +1,22 @@
+<div class="step-indicator">
+  <div class="step-wrapper" *ngFor="let step of steps; let i = index">
+    <div class="step"
+         [class.active]="service.currentStep() === i"
+         [class.completed]="service.currentStep() > i">
+
+      <span class="number">
+        <ng-container *ngIf="service.currentStep() > i; else stepNumber">
+          ✓
+        </ng-container>
+        <ng-template #stepNumber>{{ (i+1) | number:'2.0' }}</ng-template>
+      </span>
+      <span class="label">{{ step }}</span>
+    </div>
+
+    <!-- conector solo si no es el último -->
+    <div *ngIf="i < steps.length - 1"
+         class="connector"
+         [class.filled]="service.currentStep() > i">
+    </div>
+  </div>
+</div>

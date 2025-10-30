@@ -1,0 +1,92 @@
+@import "bootstrap/scss/bootstrap";
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family-regular);
+}
+
+p,
+h2 {
+  margin: 0;
+}
+
+/* === Rebrand del botón del widget de accesibilidad url === */
+#acc-accessibility-icon,
+.acc-accessibility-icon {
+  position: fixed !important;
+  left: 30px !important;
+  bottom: 200px !important;
+  z-index: 999 !important;
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  background-color: #0F6FF5 !important;
+  color: #fff !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(72, 145, 247, 0.35) !important;
+  transition: transform .2s ease, background-color .3s ease, box-shadow .3s ease !important;
+  overflow: visible !important;
+}
+
+/* icono blanco centrado (Font Awesome) */
+#acc-accessibility-icon i,
+.acc-accessibility-icon i {
+  color: #fff !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* anillo exterior */
+#acc-accessibility-icon::before,
+.acc-accessibility-icon::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 66px !important;
+  height: 66px !important;
+  border: 3px solid #0F6FF5 !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+}
+
+/* halo celeste suave de fondo */
+#acc-accessibility-icon::after,
+.acc-accessibility-icon::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 90px !important;
+  height: 90px !important;
+  background-color: rgba(72, 145, 247, 0.15) !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+/* hover/focus */
+#acc-accessibility-icon:hover,
+.acc-accessibility-icon:hover {
+  background-color: #3a7dd8 !important;
+  box-shadow: 0 6px 16px rgba(72, 145, 247, 0.45) !important;
+}
+#acc-accessibility-icon:focus-visible,
+.acc-accessibility-icon:focus-visible {
+  outline: 3px solid #99B8FF !important;
+  outline-offset: 2px !important;
+}
+
+

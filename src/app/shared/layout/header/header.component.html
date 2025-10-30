@@ -1,0 +1,78 @@
+<div class="top-bar">
+  <div class="container">
+    <div class="left-nav">
+      <img src="assets/images/logo-indecopi.svg" alt="Logo Mdpvfrontend" class="logo-mdpvfrontend">
+
+      <nav class="top-nav" aria-label="Recursos">
+        <ul>
+          <li class="has-menu" [class.is-open]="isManualesOpen">
+            <button
+              class="menu-trigger"
+              type="button"
+              (click)="toggleMenu('manuales')"
+              aria-haspopup="true"
+              [attr.aria-expanded]="isManualesOpen"
+            >
+              <span>Manuales</span>
+              <i class="bi" [ngClass]="isManualesOpen ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+            </button>
+
+            <!-- Panel alineado al trigger -->
+            <div class="dropdown-panel" *ngIf="isManualesOpen">
+              <a class="panel-item" (click)="openPdf('manuales')">
+                <span>Manual de usuario (PDF)</span>
+                <i class="bi bi-chevron-right"></i>
+              </a>
+            </div>
+          </li>
+
+          <li class="has-menu" [class.is-open]="isTutorialesOpen">
+            <button
+              class="menu-trigger"
+              type="button"
+              (click)="toggleMenu('tutoriales')"
+              aria-haspopup="true"
+              [attr.aria-expanded]="isTutorialesOpen"
+            >
+              <span>Tutoriales</span>
+              <i class="bi" [ngClass]="isTutorialesOpen ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+            </button>
+
+            <div class="dropdown-panel" *ngIf="isTutorialesOpen">
+              <a class="panel-item" (click)="openPdf('tutoriales')">
+                <span>Tutorial rápido (PDF)</span>
+                <i class="bi bi-chevron-right"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <!-- BOTON INICIAR SESION + USUARIO LOGEADO
+    <div class="header-actions">
+      <button *ngIf="!isLoggedIn" class="btn btn-login" (click)="onLogin()">Iniciar Sesión</button>
+
+      <div *ngIf="isLoggedIn" class="user-info">
+        <div class="separator"></div>
+        <div class="user-avatar">{{ getInitials(userName) }}</div>
+        <div class="user-name">
+          <span>{{ userName }}</span>
+          <small>Usuario</small>
+        </div>
+        <i class="bi bi-chevron-down"></i>
+      </div>
+    </div>
+    -->
+
+  </div>
+</div>
+
+<header class="main-header">
+  <div class="container">
+    <div class="logo-container">
+      <img src="assets/images/mesaPartesVirtual.svg" alt="Logo Mesa Partes Virtual">
+    </div>
+  </div>
+</header>

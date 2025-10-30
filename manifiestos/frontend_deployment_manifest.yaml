@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: mdpvfrontend-ns
+  name: frontend-sesiones-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-sesiones-deployment
+  template:
+    metadata:
+      name: frontend-sesiones-deployment
+      labels:
+        app: frontend-sesiones-deployment
+    spec:
+      imagePullSecrets:
+        - name: mdpvfrontend-registry
+      containers:
+        - name: frontend-sesiones-deployment
+          image: registry-local-noprod.mdpvfrontend.gob.pe/root/apptodossesionesmdpvfrontendfrontend:latest
+          imagePullPolicy: Always
+          ports:
+            - name: ms-port
+              containerPort: 80

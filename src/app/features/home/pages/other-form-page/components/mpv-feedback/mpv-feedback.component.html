@@ -1,0 +1,33 @@
+<div class="feedback-container">
+  <h3>Califica tu experiencia</h3>
+  <p>¿Te sientes satisfecho con la experiencia de envío de Mesa de Partes virtual?</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="feedback-form">
+    <div class="options">
+      <label class="card-option">
+        <input type="radio" formControlName="satisfaction" value="yes" />
+        <div class="icon-card">
+          <img src="assets/images/likeMVP.svg" alt="Si" class="feedback-icon">
+          <span>SI</span>
+        </div>
+      </label>
+
+      <label class="card-option">
+        <input type="radio" formControlName="satisfaction" value="no" />
+        <div class="icon-card">
+          <img src="assets/images/dislikeMVP.svg" alt="No" class="feedback-icon">
+          <span>No</span>
+        </div>
+      </label>
+    </div>
+
+    <div *ngIf="form.get('satisfaction')?.touched && form.get('satisfaction')?.invalid" class="error-msg">
+      Debe seleccionar una de las dos opciones.
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit">Enviar</button>
+    </div>
+  </form>
+</div>
+

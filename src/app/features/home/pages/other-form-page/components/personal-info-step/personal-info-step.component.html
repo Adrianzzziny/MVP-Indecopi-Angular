@@ -1,0 +1,345 @@
+<form [formGroup]="form">
+  <h3>Mis datos personales</h3>
+
+  <div class="form-row">
+    <!-- Tipo de Documento -->
+    <div class="form-group">
+      <label>Tipo de Documento <span class="required">(Obligatorio)</span></label>
+      <select formControlName="tipoDocumento" required>
+        <option value="">Seleccionar</option>
+        <option value="DNI">DNI</option>
+        <option value="CARNÉ DE EXTRANJERÍA">CARNÉ DE EXTRANJERÍA</option>
+      </select>
+      <div *ngIf="(submitted || form.get('tipoDocumento')?.touched) && form.get('tipoDocumento')?.hasError('required')" class="error">
+        El tipo de documento es obligatorio.
+      </div>
+    </div>
+
+    <!-- Nro Documento -->
+    <div class="form-group">
+      <label>Nro Documento <span class="required">(Obligatorio)</span></label>
+      <input
+        type="text"
+        formControlName="numeroDocumento"
+        required
+        placeholder="Ingrese documento"
+        (input)="limitarEntrada('numeroDocumento', $event)"
+      />
+
+      <div *ngIf="(submitted || form.get('numeroDocumento')?.touched) && form.get('numeroDocumento')?.hasError('required')" class="error">
+        El número de documento es obligatorio.
+      </div>
+
+      <!-- DNI -->
+      <div *ngIf="form.get('tipoDocumento')?.value === 'DNI' && (submitted || form.get('numeroDocumento')?.touched)" class="error">
+          <span *ngIf="form.get('numeroDocumento')?.hasError('pattern')">
+            DNI inválido: debe tener exactamente 8 dígitos numéricos.
+          </span>
+      </div>
+
+      <!-- Carné -->
+      <div *ngIf="form.get('tipoDocumento')?.value === 'CARNÉ DE EXTRANJERÍA' && (submitted || form.get('numeroDocumento')?.touched)" class="error">
+        <span *ngIf="form.get('numeroDocumento')?.hasError('pattern')">
+          Carné de extranjería inválido: debe tener exactamente 12 dígitos numéricos.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nombres -->
+  <div class="form-group">
+    <label>Nombres <span class="required">(Obligatorio)</span></label>
+    <input type="text" formControlName="nombres" placeholder="Nombres" (input)="limitarEntrada('nombres', $event)" />
+    <div class="error" *ngIf="(submitted || form.get('nombres')?.touched) && form.get('nombres')?.hasError('required')">
+      <span *ngIf="form.get('nombres')?.hasError('required')">El nombre es obligatorio.</span>
+      <span *ngIf="form.get('nombres')?.hasError('minlength')">Debe tener al menos 3 caracteres.</span>
+      <span *ngIf="form.get('nombres')?.hasError('maxlength')">Máximo 40 caracteres.</span>
+    </div>
+  </div>
+
+  <!-- Apellidos -->
+  <div class="form-row">
+    <div class="form-group">
+      <label>Apellido paterno <span class="required">(Obligatorio)</span></label>
+      <input
+        type="text"
+        formControlName="apellidoPaterno"
+        placeholder="Apellido paterno"
+        (input)="limitarEntrada('apellidoPaterno', $event)"
+      />
+      <div *ngIf="form.get('apellidoPaterno')?.touched && form.get('apellidoPaterno')?.invalid" class="error">
+        <span *ngIf="form.get('apellidoPaterno')?.hasError('required')">Campo obligatorio.</span>
+        <span *ngIf="form.get('apellidoPaterno')?.hasError('minlength')">Debe tener al menos 3 caracteres.</span>
+        <span *ngIf="form.get('apellidoPaterno')?.hasError('maxlength')">Máximo 30 caracteres.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Apellido materno <span class="required">(Obligatorio)</span></label>
+      <input
+        type="text"
+        formControlName="apellidoMaterno"
+        placeholder="Apellido materno"
+        (input)="limitarEntrada('apellidoMaterno', $event)"
+      />
+      <div *ngIf="form.get('apellidoMaterno')?.touched && form.get('apellidoMaterno')?.invalid" class="error">
+        <span *ngIf="form.get('apellidoMaterno')?.hasError('required')">Campo obligatorio.</span>
+        <span *ngIf="form.get('apellidoMaterno')?.hasError('minlength')">Debe tener al menos 3 caracteres.</span>
+        <span *ngIf="form.get('apellidoMaterno')?.hasError('maxlength')">Máximo 30 caracteres.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contacto: Correo + Código + Celular -->
+  <div class="form-row triple">
+    <div class="form-group">
+      <label>Correo <span class="required">(Obligatorio)</span></label>
+      <input
+        type="email"
+        formControlName="correo"
+        placeholder="Ejem. micorreo@gmail.com"
+        (input)="limitarEntrada('correo', $event)"
+        (blur)="validarCorreo()"
+      />
+      <div *ngIf="form.get('correo')?.touched && form.get('correo')?.invalid" class="error">
+        <span *ngIf="form.get('correo')?.hasError('required')">El correo es obligatorio.</span>
+        <span *ngIf="form.get('correo')?.hasError('pattern')">Por favor, introduce un correo válido (ej: nombre&#64;dominio.com).</span>
+        <span *ngIf="form.get('correo')?.hasError('maxlength')">Máximo 40 caracteres.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Código <span class="required">(Obligatorio)</span></label>
+      <select formControlName="codigoPais" required>
+        <option value="">Seleccionar</option>
+        <option value="+51">Perú (+51)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Celular <span class="required">(Obligatorio)</span></label>
+      <input type="text" formControlName="celular" placeholder="Ingrese celular" (input)="limitarEntrada('celular', $event)" />
+      <div *ngIf="form.get('celular')?.touched && form.get('celular')?.invalid" class="error">
+        <span *ngIf="form.get('celular')?.hasError('required')">El celular es obligatorio.</span>
+        <span *ngIf="form.get('celular')?.hasError('pattern')">Debe tener exactamente 9 dígitos numéricos.</span>
+        <span *ngIf="form.get('celular')?.hasError('empiezaCon9')">El número debe comenzar en 9.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ubigeo -->
+  <div *ngIf="!ocultarUbigeo">
+    <p>Ingrese el ubigeo de acuerdo con el Documento de Identidad:</p>
+
+    <div class="form-row triple">
+      <!-- Departamento -->
+      <div class="form-group">
+        <label>Departamento <span class="required">(Obligatorio)</span></label>
+        <input
+          type="text"
+          [formControl]="form.controls.departamento"
+          [matAutocomplete]="autoDep"
+          placeholder="Ejemplo: Lima"
+          (input)="limitarEntrada('departamento', $event)"
+          autocomplete="off"
+          aria-autocomplete="list"
+          aria-label="Departamento"
+        />
+        <mat-autocomplete #autoDep="matAutocomplete" autoActiveFirstOption>
+          <mat-option *ngFor="let d of (filteredDepartamentos$ | async)" [value]="d">
+            {{ d }}
+          </mat-option>
+        </mat-autocomplete>
+      <!--
+        <div class="hint" *ngIf="!form.controls.departamento.disabled">
+          Empieza a escribir y selecciona un departamento válido.
+        </div>
+      -->
+        <div class="error" *ngIf="form.controls.departamento.hasError('required') && (form.controls.departamento.dirty || form.controls.departamento.touched)">
+          El departamento es obligatorio.
+        </div>
+        <div class="error" *ngIf="form.controls.departamento.hasError('minlength') && (form.controls.departamento.dirty || form.controls.departamento.touched)">
+          Debe tener al menos 3 caracteres.
+        </div>
+        <div class="error" *ngIf="form.controls.departamento.hasError('maxlength') && (form.controls.departamento.dirty || form.controls.departamento.touched)">
+          Máximo {{ form.controls.departamento.getError('maxlength')?.requiredLength }} caracteres.
+        </div>
+        <div class="error" *ngIf="form.controls.departamento.hasError('invalidUbigeoValue') && (form.controls.departamento.dirty || form.controls.departamento.touched)">
+          Selecciona un departamento válido de la lista.
+        </div>
+      </div>
+
+      <!-- Provincia -->
+      <div class="form-group">
+        <label>Provincia <span class="required">(Obligatorio)</span></label>
+        <input
+          type="text"
+          [formControl]="form.controls.provincia"
+          [matAutocomplete]="autoProv"
+          placeholder="Ejemplo: Lima"
+          (input)="limitarEntrada('provincia', $event)"
+          autocomplete="off"
+          aria-autocomplete="list"
+          aria-label="Provincia"
+          [disabled]="form.controls.provincia.disabled"
+        />
+        <mat-autocomplete #autoProv="matAutocomplete" autoActiveFirstOption>
+          <mat-option *ngFor="let p of (filteredProvincias$ | async)" [value]="p">
+            {{ p }}
+          </mat-option>
+        </mat-autocomplete>
+        <!--
+          <div class="hint" *ngIf="form.controls.provincia.enabled">
+            Primero elige un departamento. Luego escribe y selecciona una provincia.
+          </div>
+        -->
+
+          <div class="error" *ngIf="form.controls.provincia.hasError('required') && (form.controls.provincia.dirty || form.controls.provincia.touched)">
+            La provincia es obligatoria.
+          </div>
+          <div class="error" *ngIf="form.controls.provincia.hasError('minlength') && (form.controls.provincia.dirty || form.controls.provincia.touched)">
+            Debe tener al menos 3 caracteres.
+          </div>
+          <div class="error" *ngIf="form.controls.provincia.hasError('maxlength') && (form.controls.provincia.dirty || form.controls.provincia.touched)">
+            Máximo {{ form.controls.provincia.getError('maxlength')?.requiredLength }} caracteres.
+          </div>
+          <div class="error" *ngIf="form.controls.provincia.hasError('invalidUbigeoValue') && (form.controls.provincia.dirty || form.controls.provincia.touched)">
+            Selecciona una provincia válida para el departamento elegido.
+          </div>
+        </div>
+
+        <!-- Distrito -->
+      <div class="form-group">
+        <label>Distrito <span class="required">(Obligatorio)</span></label>
+        <input
+          type="text"
+          [formControl]="form.controls.distrito"
+          [matAutocomplete]="autoDist"
+          placeholder="Ejemplo: Miraflores"
+          (input)="limitarEntrada('distrito', $event)"
+          autocomplete="off"
+          aria-autocomplete="list"
+          aria-label="Distrito"
+          [disabled]="form.controls.distrito.disabled"
+        />
+        <mat-autocomplete #autoDist="matAutocomplete" autoActiveFirstOption>
+          <mat-option *ngFor="let d of (filteredDistritos$ | async)" [value]="d">
+            {{ d }}
+          </mat-option>
+        </mat-autocomplete>
+        <!--
+          <div class="hint" *ngIf="form.controls.distrito.enabled">
+            Selecciona primero provincia. Luego escribe y elige un distrito válido.
+          </div>
+        -->
+          <div class="error" *ngIf="form.controls.distrito.hasError('required') && (form.controls.distrito.dirty || form.controls.distrito.touched)">
+            El distrito es obligatorio.
+          </div>
+          <div class="error" *ngIf="form.controls.distrito.hasError('minlength') && (form.controls.distrito.dirty || form.controls.distrito.touched)">
+            Debe tener al menos 3 caracteres.
+          </div>
+          <div class="error" *ngIf="form.controls.distrito.hasError('maxlength') && (form.controls.distrito.dirty || form.controls.distrito.touched)">
+            Máximo {{ form.controls.distrito.getError('maxlength')?.requiredLength }} caracteres.
+          </div>
+          <div class="error" *ngIf="form.controls.distrito.hasError('invalidUbigeoValue') && (form.controls.distrito.dirty || form.controls.distrito.touched)">
+            Selecciona un distrito válido para la provincia elegida.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Tipo Representación -->
+
+  <div class="radio-group">
+    <label>
+      <input type="radio" formControlName="tipoRepresentacion" value="juridica" />
+      Represento a una Persona Jurídica
+    </label>
+    <label>
+      <input type="radio" formControlName="tipoRepresentacion" value="natural" />
+      Represento a una Persona Natural
+    </label>
+  </div>
+  <div class="form-group">
+  <div class="error"
+       *ngIf="(submitted || form.get('tipoRepresentacion')?.touched)
+            && form.get('tipoRepresentacion')?.hasError('required')">
+    Debes seleccionar una opción: Jurídica o Natural.
+  </div>
+  </div>
+  <!-- Persona Jurídica -->
+  <div *ngIf="form.get('tipoRepresentacion')?.value === 'juridica'" class="form-row">
+    <div class="form-group">
+      <label>RUC</label>
+      <div class="input-with-button">
+        <input
+          type="text"
+          formControlName="ruc"
+          placeholder="Ingrese RUC"
+          (input)="limitarEntrada('ruc', $event)"
+        />
+        <button type="button" class="search-btn" (click)="buscarRuc()">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+
+      <div *ngIf="form.get('ruc')?.touched && form.get('ruc')?.invalid" class="error">
+        <span *ngIf="form.get('ruc')?.hasError('required')">El RUC es obligatorio.</span>
+        <span *ngIf="form.get('ruc')?.hasError('pattern')">El RUC debe tener exactamente 11 dígitos numéricos.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Razón Social</label>
+      <input
+        type="text"
+        formControlName="razonSocial"
+        placeholder="Ingrese razón social"
+        (input)="limitarEntrada('razonSocial', $event)"
+        readonly
+      />
+      <div *ngIf="form.get('razonSocial')?.touched && form.get('razonSocial')?.invalid" class="error">
+        <span *ngIf="form.get('razonSocial')?.hasError('required')">Campo obligatorio.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Persona Natural -->
+  <div *ngIf="form.get('tipoRepresentacion')?.value === 'natural'" class="form-row">
+    <div class="form-group">
+      <label>LE/DNI <span class="required">(Obligatorio)</span></label>
+      <input
+        type="text"
+        formControlName="leDni"
+        placeholder="Ingrese LE/DNI"
+        (input)="limitarEntrada('leDni', $event)"
+      />
+      <div *ngIf="form.get('leDni')?.touched && form.get('leDni')?.invalid" class="error">
+        <span *ngIf="form.get('leDni')?.hasError('required')">El DNI es obligatorio.</span>
+        <span *ngIf="form.get('leDni')?.hasError('pattern')">El DNI debe contener exactamente 8 dígitos numéricos.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Nombres Completos <span class="required">(Obligatorio)</span></label>
+      <input
+        type="text"
+        formControlName="nombresCompletos"
+        placeholder="Ingrese nombres completos"
+        (input)="limitarEntrada('nombresCompletos', $event)"
+      />
+      <div *ngIf="form.get('nombresCompletos')?.touched && form.get('nombresCompletos')?.invalid" class="error">
+        <span *ngIf="form.get('nombresCompletos')?.hasError('required')">Los nombres completos son obligatorios.</span>
+        <span *ngIf="form.get('nombresCompletos')?.hasError('maxlength')">Máximo 60 caracteres permitidos.</span>
+        <span *ngIf="form.get('nombresCompletos')?.hasError('pattern')">Solo se permiten letras y espacios (sin tildes ni caracteres especiales).</span>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<!-- Card de protección de datos -->
+<div class="cards-alert mt-4">
+  <app-alert [data]="dataProteccion" mode="card"></app-alert>
+</div>

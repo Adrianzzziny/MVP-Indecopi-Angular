@@ -1,0 +1,73 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h3>Área de destino</h3>
+
+  <!-- Sede -->
+  <div class="form-group select-with-icon">
+    <label>Sede</label>
+    <div class="select-wrapper">
+      <i class="bi bi-search"></i>
+      <input type="text"
+             formControlName="sede"
+             [matAutocomplete]="autoSede"
+             placeholder="Buscar"
+             (input)="limitarEntrada('sede', $event)" />
+      <mat-autocomplete #autoSede="matAutocomplete">
+        <mat-option *ngFor="let sede of (filteredSedes$ | async)" [value]="sede">
+          {{ sede }}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+
+    <div class="error"
+         *ngIf="(submitted || form.get('sede')?.touched) && form.get('sede')?.hasError('required')">
+      La sede es obligatoria.
+    </div>
+  </div>
+
+  <!-- Área de destino -->
+  <div class="form-group select-with-icon">
+    <label>Área de destino</label>
+    <div class="select-wrapper">
+      <i class="bi bi-search"></i>
+      <input type="text"
+             formControlName="areaDestino"
+             [matAutocomplete]="autoArea"
+             placeholder="Buscar"
+             (input)="limitarEntrada('areaDestino', $event)" />
+      <mat-autocomplete #autoArea="matAutocomplete">
+        <mat-option *ngFor="let area of (filteredAreas$ | async)" [value]="area">
+          {{ area }}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+
+    <div class="error"
+         *ngIf="(submitted || form.get('areaDestino')?.touched) && form.get('areaDestino')?.hasError('required')">
+      El área de destino es obligatoria.
+    </div>
+  </div>
+
+  <!-- Asunto -->
+  <div class="form-group has-counter">
+    <label>Asunto</label>
+    <textarea formControlName="asunto" rows="1" maxlength="30" placeholder="Ingresar asunto"
+              (input)="limitarEntrada('asunto', $event)"></textarea>
+
+    <div class="char-counter" aria-hidden="true">
+      {{ form.get('asunto')?.value?.length || 0 }}/30
+    </div>
+
+    <div class="error"
+         *ngIf="(submitted || form.get('asunto')?.touched) && form.get('asunto')?.hasError('required')">
+      El asunto es obligatorio.
+    </div>
+    <div class="error"
+         *ngIf="(submitted || form.get('asunto')?.touched) && form.get('asunto')?.hasError('minlength')">
+      Debe tener al menos 3 caracteres.
+    </div>
+    <div class="error"
+         *ngIf="(submitted || form.get('asunto')?.touched) && form.get('asunto')?.hasError('maxlength')">
+      Máximo 30 caracteres.
+    </div>
+  </div>
+</form>

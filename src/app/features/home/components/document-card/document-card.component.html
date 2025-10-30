@@ -1,0 +1,17 @@
+<mat-card class="document-card">
+  <div class="document-card-content">
+    <div class="icon-wrapper">
+      <mat-icon [svgIcon]="icon()"></mat-icon>
+    </div>
+    <mat-card-title>{{ title() }}</mat-card-title>
+  </div>
+
+  <div class="document-card-button">
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="onIngresar($event)">
+        Ingresar
+        <span class="arrow">></span>
+      </button>
+    </mat-card-actions>
+  </div>
+</mat-card>

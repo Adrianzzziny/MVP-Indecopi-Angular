@@ -1,0 +1,25 @@
+<div class="access-alert">
+  <h2>{{ title }}</h2>
+  <p>{{ message }}</p>
+
+  <div class="access-options">
+    <button class="option-card" (click)="choose('login')">
+      <div class="icon-circle">
+        <img src="assets/icons/computer.svg" alt="Iniciar Sesión" class="icon" />
+      </div>
+      <span>Iniciar Sesión</span>
+      <i class="bi bi-chevron-right arrow"></i>
+    </button>
+
+    <button class="option-card" (click)="choose('guest')">
+      <div class="icon-circle">
+        <img src="assets/icons/iconPerson.svg" alt="Como Invitado" class="icon" />
+      </div>
+      <span>Como Invitado</span>
+      <i class="bi bi-chevron-right arrow"></i>
+    </button>
+  </div>
+  <button class="btn-close-access" (click)="close()">
+    Cerrar
+  </button>
+</div>

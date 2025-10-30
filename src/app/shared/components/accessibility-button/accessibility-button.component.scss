@@ -1,0 +1,87 @@
+.accessibility-btn-container {
+  position: fixed;
+  bottom: 200px;
+  left: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 9999;
+
+  .tooltip-accessibility {
+    position: absolute;
+    left: 80px;
+    bottom: 16px;
+    background: #fff;
+    color: #222;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(5px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  &:hover .tooltip-accessibility,
+  .accessibility-btn:focus + .tooltip-accessibility {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.accessibility-btn {
+  position: relative;
+  background-color: #0F6FF5;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  box-shadow: 0 4px 12px rgba(72, 145, 247, 0.35);
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+
+  /* Anillo exterior */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 66px;
+    height: 66px;
+    border: 3px solid #0F6FF5;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* Fondo circular sólido celeste claro */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background-color: rgba(72, 145, 247, 0.15);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  &:hover {
+    background-color: #3a7dd8;
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(72, 145, 247, 0.45);
+  }
+
+  i {
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+}

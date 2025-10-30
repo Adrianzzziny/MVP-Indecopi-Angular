@@ -1,0 +1,158 @@
+:host {
+  display: block;
+  padding: 20px;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+h3 {
+  color: var(--mdpvfrontend-primary-pink);
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* ====== FORM GROUP ====== */
+.form-group {
+  margin-bottom: 16px;
+
+  label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  select,
+  textarea,
+  input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    background: white;
+
+    &:focus {
+      outline: none;
+      border-color: var(--mdpvfrontend-primary-pink);
+      box-shadow: 0 0 0 2px rgba(255, 0, 128, 0.15);
+    }
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .char-counter {
+    font-size: 12px;
+    text-align: right;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  .error {
+    color: var(--mdpvfrontend-error-primary);
+    font-size: 12px;
+    margin-top: 4px;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+}
+
+/* ====== FORM ROW (dos columnas en desktop) ====== */
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  .form-group {
+    flex: 1;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ====== ACTIONS (botones) ====== */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+
+  button {
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-weight: 600;
+    min-width: 120px;
+    cursor: pointer;
+
+    &.btn-back {
+      border: 2px solid var(--mdpvfrontend-primary-orange);
+      background: transparent;
+      color: var(--mdpvfrontend-primary-orange);
+
+      &:hover {
+        border-color: var(--mdpvfrontend-primary-yellow);
+        color: var(--mdpvfrontend-primary-yellow);
+      }
+    }
+
+    &.btn-next {
+      background: var(--mdpvfrontend-primary-orange);
+      border: none;
+      color: #fff;
+
+      &:hover {
+        background: var(--mdpvfrontend-primary-yellow);
+      }
+    }
+  }
+}
+
+/* ====== SELECT / AUTOCOMPLETE CON ICONO ====== */
+.select-with-icon {
+  .select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    i.bi {
+      position: absolute;
+      left: 12px;
+      font-size: 16px;
+      color: #666;
+      pointer-events: none;
+    }
+
+    input,
+    select {
+      padding-left: 38px; /* espacio para el icono */
+    }
+  }
+}
+
+/* Contenedor con contador interno */
+.form-group.has-counter {
+  position: relative;
+}
+
+/* Reserva espacio a la derecha del textarea para que el contador no tape texto */
+.form-group.has-counter textarea {
+  padding-right: 56px;
+  min-height: 44px;
+}
+
+/* El contador no ocupa espacio y se queda en la esquina inferior derecha */
+.char-counter {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  font-size: 12px;
+  color: #666;
+  pointer-events: none; /* que no bloquee el cursor en el textarea */
+}
+

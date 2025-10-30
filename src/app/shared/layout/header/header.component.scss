@@ -1,0 +1,343 @@
+/* --- Variables de Color --- */
+:root {
+  --color-primary-guinda: #BB004D; /* Color guinda principal */
+  --color-primary-yellow: #EF9E00; /* Color amarillo principal */
+  --color-secundary-yellow: rgb(255,196,0); /* Color amarillo button*/
+  --color-text-light: #ffffff;
+  --color-text-dark: #333333;
+  --color-border: #e0e0e0;
+}
+
+/* --- Estilos Generales --- */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Barra Superior --- */
+.top-bar {
+  background-color: #BB004D;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.top-bar .container {
+  width: 100%;
+  padding: 0 20px;
+  max-width: none;
+}
+
+.left-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-mdpvfrontend {
+  height: 30px;
+}
+
+
+.top-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.top-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.top-nav a:hover {
+  opacity: 0.8;
+}
+
+.top-nav a i {
+  font-size: 10px;
+  margin-left: 5px;
+  color: var(--color-text-light);
+}
+
+/* --- Acciones del Header --- */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.btn {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-login {
+  background-color: #ffffff;
+  border: 1px solid #EF9E00;
+  color: #EF9E00;
+}
+
+.btn-register {
+  background-color: #EF9E00;
+  color: #ffffff;
+}
+
+.btn-login:hover {
+  background-color: rgb(255,196,0);
+}
+
+.btn-register:hover {
+  opacity: 0.9;
+}
+
+
+/* --- Header Principal --- */
+.main-header {
+  background-color: rgb(255,196,0);
+  padding: 20px 0;
+}
+
+.main-header .container {
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container img {
+  height: 80px;
+  mix-blend-mode: darken;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #EF9E00;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.user-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.user-name span {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.user-name small {
+  font-size: 12px;
+  color: #ddd;
+}
+
+.separator {
+  width: 1px;
+  height: 30px;
+  background-color: #fff;
+  margin-right: 10px;
+}
+
+.top-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.top-nav li {
+  position: relative;
+}
+
+.menu-trigger {
+  background: transparent;
+  border: 0;
+  color: var(--color-primary-yellow);
+  cursor: pointer;
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+}
+
+.menu-trigger:hover { opacity: 1.85; }
+
+.submenu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: var(--color-primary-yellow);
+  color: var(--color-text-dark);
+  border-radius: 8px;
+  min-width: 220px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.15);
+  padding: 6px 0;
+  z-index: 50;
+}
+
+.submenu li { list-style: none; }
+
+.submenu a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.submenu a:hover {
+  background: var(--color-primary-yellow);
+}
+
+
+
+/* --- Media Queries Responsive --- */
+
+
+/* Para Móviles (hasta 768px) */
+@media (max-width: 768px) {
+
+  .left-nav{
+    padding: 6px 4px;
+    font-size: 13px
+  }
+
+  .btn-login {
+    padding: 6px 4px;
+    font-size: 13px;
+    border-radius: 15px;
+  }
+
+  .top-bar .container {
+    flex-direction: row;
+  }
+
+  .main-header .container {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .title-container h1 {
+    font-size: 22px;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+}
+
+/* ========== NAV con pestaña amarilla y panel alineado ========== */
+
+.top-nav {
+  position: relative;
+
+  ul {
+    display: flex;
+    gap: 28px;
+    align-items: stretch; /* para alinear alto del trigger con la barra */
+  }
+
+  li.has-menu {
+    position: relative;
+  }
+
+  /* Trigger */
+  .menu-trigger {
+    background: transparent;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: color .2s ease, background-color .2s ease;
+  }
+
+  /* Estado abierto → pestaña amarilla (como Figma) */
+  li.has-menu.is-open .menu-trigger {
+    background: var(--color-secundary-yellow); /* #FFC400 */
+    color: var(--color-text-dark); /* texto oscuro para contraste */
+  }
+
+  /* El chevron ya cambia en el HTML con ngClass */
+
+  /* PANEL alineado al trigger */
+  .dropdown-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 50;
+
+    /* “Píldora” blanca con sombra suave */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.08),
+      0 2px 6px rgba(0, 0, 0, 0.06);
+
+    /* Item único (puedes añadir más <a.panel-item> si lo necesitas) */
+    .panel-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      color: var(--color-text-dark);
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 10px;
+
+      i {
+        margin-left: 6px;
+        font-size: 14px;
+        color: var(--color-primary-yellow);
+      }
+
+      &:hover {
+        background: #f7f7f7;
+      }
+    }
+  }
+}
+
+/* ====== Responsivo ====== */
+
+@media (max-width: 768px) {
+  .top-nav .dropdown-panel {
+    position: static;   /* que fluya debajo en mobile */
+    transform: none;
+    margin-top: 8px;
+  }
+}

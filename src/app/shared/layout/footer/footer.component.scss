@@ -1,0 +1,215 @@
+/* --- Variables de Color --- */
+:root {
+  --color-text-dark: #262626;
+  --color-text-secondary: #B2B2B2;
+  --color-background-light: #ffffff;
+  --color-hover-socials: #464F60;
+  --color-border: #e0e0e0;
+}
+
+.site-footer {
+  background-color: #ffffff;
+  color: #262626;
+  font-size: 14px;
+  position: relative;
+}
+
+.site-footer .container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* --- Sección Principal del Footer --- */
+.footer-main {
+  padding: 40px 0;
+}
+
+.footer-main .container {
+  gap: 10px; /* Espacio entre columnas */
+}
+
+.footer-logo-column {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  margin-right: 30px;
+}
+
+.footer-graphic {
+  width: 80px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-graphic {
+  max-width: 80px;
+}
+
+.footer-column h5 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.footer-column p {
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: #B2B2B2;
+}
+
+
+/* --- Sección Inferior del Footer --- */
+.footer-bottom {
+  background-color: #ffffff;
+  padding: 30px 0;
+}
+
+.footer-bottom .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.copyright-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: #262626;
+}
+
+.footer-logo-bn {
+  height: 25px;
+}
+
+.social-media {
+  display: flex;
+  gap: 15px;
+}
+
+.social-media a {
+  color: #262626;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+  color: #464F60
+}
+
+
+
+/* --- Botón para subir --- */
+.scroll-to-top {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+ border: none;
+  background-color: var(--mdpvfrontend-primary-pink);
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.scroll-to-top:hover {
+  background-color: #9b003e;
+}
+
+/* --- Media Queries para Responsividad --- */
+
+/* Para Tablets y pantallas medianas (hasta 992px) */
+@media (max-width: 992px) {
+  .top-bar .container,
+  .main-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .top-nav {
+    margin-top: 10px;
+  }
+
+  .header-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Para Móviles (hasta 768px) */
+@media (max-width: 768px) {
+  /* Ocultamos la navegación principal */
+  .top-nav {
+    display: none;
+    /* TS botón de hamburguesa */
+  }
+
+  .top-bar .container {
+    flex-direction: row;
+  }
+
+  .main-header .container {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .title-container h1 {
+    font-size: 25px;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+  /* --- Estilos para Footer Responsivo en Mobile --- */
+  .footer-main .container {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+
+  /* Ocultar el logo con forma de J en mobile */
+  .footer-logo-column {
+    display: none;
+  }
+
+  /* Las columnas ahora ocupan todo el ancho */
+  .footer-column {
+    width: 100%;
+    min-width: 100%;
+    text-align: center;
+  }
+
+  /* Ajustar padding del footer en mobile */
+  .footer-main {
+    padding: 30px 0;
+  }
+
+  .copyright-section {
+    font-weight: bold;
+  }
+
+  /* Ajustar el botón de scroll en mobile */
+  .scroll-to-top {
+    bottom: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+  }
+}

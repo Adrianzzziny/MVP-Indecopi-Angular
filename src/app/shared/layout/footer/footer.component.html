@@ -1,0 +1,63 @@
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="container">
+
+      <!-- Columna con el Logo -->
+      <div class="footer-logo-column">
+        <img src="assets/images/logoFooter.svg" alt="Mdpvfrontend" class="footer-graphic">
+      </div>
+
+      <!-- Columna Atención al ciudadano -->
+      <div class="footer-column">
+        <h5>Atención al ciudadano</h5>
+        <p><strong>Lima:</strong><br>224 7777</p>
+        <p><strong>Regiones:</strong><br>0-800-4-4040<br>(Llamada gratuita)</p>
+      </div>
+
+      <!-- Columna Horario -->
+      <div class="footer-column">
+        <h5>Horario de Atención</h5>
+        <p><strong>Mesa de Partes Presencial</strong><br>Lunes a viernes<br>08:30 a.m. - 04:30 p.m.</p>
+      </div>
+
+      <!-- Columna Contacto -->
+      <div class="footer-column">
+        <h5>Contáctanos</h5>
+        <p><strong>Centro de Información</strong><br>cid&#64;mdpvfrontend.gob.pe</p>
+        <p><strong>Mesa de Partes</strong><br>consultasmesadepartes&#64;mdpvfrontend.gob.pe</p>
+        <p><strong>Escuela de Mdpvfrontend</strong><br>escuela&#64;mdpvfrontend.gob.pe</p>
+      </div>
+
+      <!-- Columna Oficinas -->
+      <div class="footer-column">
+        <h5>Oficinas</h5>
+        <p><strong>Lima Sur:</strong><br>Calle De La Prosa 104, San<br>Borja</p>
+        <p><strong>Lima Norte:</strong><br>Av. Carlos Izaguirre 966, Los<br>Olivos</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="copyright-section">
+        <img src="assets/images/logo-indecopi-color.svg" alt="Mdpvfrontend" class="footer-logo-bn">
+        <span>© Copyright 2025. Todos los derechos reservados.</span>
+      </div>
+
+      <div class="social-media">
+        <a *ngIf="env.socialURL.facebook" [href]="env.socialURL.facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a *ngIf="env.socialURL.twitter" [href]="env.socialURL.twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+        <a *ngIf="env.socialURL.instagram" [href]="env.socialURL.instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a *ngIf="env.socialURL.youtube" [href]="env.socialURL.youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        <a *ngIf="env.socialURL.x" [href]="env.socialURL.x" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+        <a *ngIf="env.socialURL.tiktok" [href]="env.socialURL.tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        <a *ngIf="env.socialURL.linkedin" [href]="env.socialURL.linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+
+
+  <button type="button" class="scroll-to-top" aria-label="Volver arriba" (click)="scrollToTop()">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+</footer>

@@ -1,0 +1,439 @@
+:host {
+  display: block;
+  padding: 20px;
+  font-family: "Roboto", Arial, sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+}
+
+h3{
+  color: var(--mdpvfrontend-primary-pink);
+  font-weight: bold;
+}
+
+h4 {
+  color: #262626;
+  margin: 24px 0 12px;
+  font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+/* Contenedor de subida */
+.file-upload {
+  margin: 20px 0;
+
+  label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    background: #fafafa;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+
+    &:hover {
+      border-color: var(--mdpvfrontend-primary-pink);
+      background: #fff7f0;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input[type="file"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+    }
+
+    button {
+      margin-top: 12px;
+      background: var(--mdpvfrontend-primary-pink);
+      color: white;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background: #70002b;
+      }
+    }
+
+    small {
+      display: block;
+      margin-top: 6px;
+      color: #777;
+      font-size: 13px;
+    }
+  }
+
+  ul {
+    margin-top: 12px;
+    padding-left: 18px;
+
+    li {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+/* Botones */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+
+  button {
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-weight: 600;
+    min-width: 120px;
+    text-transform: none;
+    cursor: pointer;
+
+    &.btn-back {
+      border: 2px solid var(--mdpvfrontend-primary-orange);
+      background: transparent;
+      color: var(--mdpvfrontend-primary-orange);
+
+      &:hover {
+        background: #fff;
+        border-color: var(--mdpvfrontend-primary-yellow);
+        color: var(--mdpvfrontend-primary-yellow);
+      }
+    }
+
+    &.btn-next {
+      background: var(--mdpvfrontend-primary-orange);
+      color: white;
+      border: none;
+
+      &:hover {
+        background: var(--mdpvfrontend-primary-yellow);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+
+    button {
+      width: 100%;
+      font-size: 16px;
+    }
+  }
+}
+
+/* Grupos de formulario */
+.form-group {
+  margin-bottom: 16px;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .required {
+    font-size: 12px;
+    color: #999;
+    font-weight: normal;
+  }
+
+  select,
+  input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+
+    &:focus {
+      outline: none;
+      border-color: var(--mdpvfrontend-primary-pink);
+      box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.1);
+    }
+  }
+}
+
+/* Fila en paralelo para Tipo de Documento + Expediente */
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  .form-group {
+    flex: 1;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.form-group label i.bi-info-circle {
+  font-size: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* Ícono upload grande y guinda */
+.upload-icon {
+  font-size: 36px;
+  color: #c93371;
+  margin-bottom: 8px;
+}
+
+/*
+Resumen Total 1.0
+
+.files-summary {
+  margin-top: 20px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+
+    thead {
+      background: #fff8e1;
+      color: #333;
+      text-align: left;
+
+      th {
+        padding: 10px;
+        font-weight: 600;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid var(--mdpvfrontend-primary-orange, #fbc02d);
+
+        td {
+          padding: 10px;
+        }
+
+        .icon-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          margin-right: 8px;
+          font-size: 16px;
+          color: #666;
+
+          &:hover {
+            color: var(--mdpvfrontend-primary-orange);
+          }
+        }
+      }
+    }
+  }
+}
+*/
+
+/*Resumen Documento Principal y Anexos 2.0*/
+
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 14px;
+  table-layout: fixed;
+
+  thead {
+    background: #eaeaea;
+
+    th {
+      text-align: left;
+      padding: 10px;
+      font-weight: 600;
+      color: #464F60;
+
+      &:nth-child(1) {
+        width: 55%; /* Nombre */
+      }
+      &:nth-child(2) {
+        width: 15%; /* Tamaño */
+      }
+      &:nth-child(3) {
+        width: 15%; /* Total páginas */
+        white-space: nowrap;
+        text-align: center;
+      }
+      &:nth-child(4) {
+        width: 15%; /* Acciones */
+        text-align: center;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #e0e0e0;
+      color: #464F60;
+
+      td {
+        padding: 10px;
+        vertical-align: middle;
+        text-align: center;
+      }
+
+      td:nth-child(1) {
+        text-align: left;
+      }
+
+      .table-actions {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        .icon-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+          padding: 0;
+          margin: 0;
+          line-height: 1;
+          color: var(--mdpvfrontend-primary-pink);
+
+          &.delete {
+            color: #c0392b;
+          }
+
+          &:hover {
+            color: #70002b;
+          }
+        }
+      }
+    }
+  }
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  app-pagination {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .file-table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 13px;
+
+    th,
+    td {
+      padding: 8px 6px;
+    }
+
+    /* Ajuste de proporciones */
+    thead th:nth-child(1),
+    tbody td:nth-child(1) {
+      width: 50%;
+      max-width: 160px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    thead th:nth-child(2),
+    tbody td:nth-child(2) {
+      width: 15%;
+      text-align: center;
+    }
+
+    thead th:nth-child(3),
+    tbody td:nth-child(3) {
+      width: 20%;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    thead th:nth-child(4),
+    tbody td:nth-child(4) {
+      width: 15%;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .table-actions {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+
+      .icon-btn {
+        font-size: 14px;
+        padding: 0;
+      }
+    }
+  }
+}
+
+/* Mensajes de error */
+.error-msg {
+  color: #c62828; /* rojo claro */
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 500;
+  display: block;
+}
+
+/* Bordes rojos cuando hay error */
+select.ng-invalid.ng-touched,
+input.ng-invalid.ng-touched {
+  border-color: #e53935;
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.1);
+}
+
+
+
+
+

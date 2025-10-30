@@ -1,0 +1,28 @@
+.m-alert{
+    padding: 20px;
+    &__icon{
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        i{
+            font-size: 40px;
+            color: var(--mdpvfrontend-gray-light);
+            line-height: normal;
+        }
+    }
+    &__content{
+        width: 100%;
+        max-width: 320px;
+        margin: 20px auto 30px auto;
+        text-align: center;
+        P{
+            color: var(--mdpvfrontend-gray-secondary);
+            font-size: 18px;
+        }
+    }
+    &__actions{
+        .btn{
+            min-width: 100px;
+        }
+    }
+}

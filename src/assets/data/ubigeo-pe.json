@@ -1,0 +1,52 @@
+[
+  {
+    "departamento": "LIMA",
+    "provincias": [
+      {
+        "provincia": "LIMA",
+        "distritos": [
+          "MIRAFLORES",
+          "SAN ISIDRO",
+          "SANTIAGO DE SURCO",
+          "LA MOLINA",
+          "PUEBLO LIBRE"
+        ]
+      },
+      {
+        "provincia": "HUARAL",
+        "distritos": [
+          "HUARAL",
+          "CHANCAY",
+          "AUCALLAMA",
+          "SANTA CRUZ DE ANDAMARCA",
+          "ATAVILLOS ALTO"
+        ]
+      }
+    ]
+  },
+  {
+    "departamento": "CUSCO",
+    "provincias": [
+      {
+        "provincia": "CUSCO",
+        "distritos": [
+          "CUSCO",
+          "SANTIAGO",
+          "SAN SEBASTIAN",
+          "SAN JERONIMO",
+          "WANCHAQ"
+        ]
+      },
+      {
+        "provincia": "URUBAMBA",
+        "distritos": [
+          "URUBAMBA",
+          "OLLANTAYTAMBO",
+          "CHINCHERO",
+          "MACHUPICCHU",
+          "YUCAY"
+        ]
+      }
+    ]
+  }
+]
